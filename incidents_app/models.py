@@ -9,11 +9,17 @@ class Catagorie(models.Model):
     id_catagorie=models.AutoField(primary_key=True),
     nome=models.CharField(choices=Catagories_choices , max_length=12 , default='incendie')
     
+    def __str__(self):
+        return self.nome
+    
     
     
 class Incident(models.Model):
     
-    etat_choices=(('En attante','En attante'),('traitee','traitee'))
+    etat_choices=(('En attante','En attante'),('traite','traite'))
+    
+    longitude=models.FloatField()
+    latitude=models.FloatField()
     photo_incident = models.ImageField(upload_to='media/images_incidents'),
     descriptions_text= models.TextField(max_length=400),
     descriptions_vocal=models.FileField(upload_to='media/audio_incidents'),
